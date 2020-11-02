@@ -1,2 +1,31 @@
-<h1>Product#show</h1>
-<p>Find me in app/views/product/show.html.erb</p>
+<h2 class="title is-2">
+  <% if @show_link %>
+    <%= link_to @product.name, @product %>
+  <% else %>
+    <%= @product.name %>
+  <% end %>
+</h2>
+
+<table class="table is-2">
+<thead>
+  <tr>
+    <th><%= link_to 'Category', category_index_path %></th>
+    <th>Name</th>
+    <th>Quantity per unit</th>
+    <th>Unit price</th>
+    <th>Unit stock</th>
+  </tr>
+</thead>
+
+  <tbody>
+      <tr>
+          <td><%= @product.category.name %></td>
+          <td><%= @product.name %></td>
+          <td><%= @product.quantity_per_unit %></td>
+          <td><%= @product.unit_price %></td>
+          <td><%= @product.unit_stock %></td>
+      </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Back', product_index_path %>

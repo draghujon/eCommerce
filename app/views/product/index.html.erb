@@ -1,2 +1,26 @@
-<h1>Product#index</h1>
-<p>Find me in app/views/product/index.html.erb</p>
+<section class="subtitle is-4">
+
+</section>
+<table class="table is-1">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Product</th>
+      <th><%= link_to 'Category', category_index_path %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each.with_index do |product, i| %>
+      <tr>
+        <td><% if params[:page].nil? %><%= i + 1 %><% else %><%= params[:page].to_i * 25 - 24 + i %><% end %></td>
+        <td><%= link_to product.name, product %></td>
+        <td><%= link_to product.category.name, product.category %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
