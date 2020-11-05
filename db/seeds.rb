@@ -294,3 +294,4 @@ macOS_laptop = computer_systems.products.create(
   category_id: computer_systems.id
 )
 
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
