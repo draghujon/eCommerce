@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   get 'category/index'
   get 'category/show'
   get 'product/index'
+
+  resources :product, :category, only: %i[index] do
+    collection do
+      get "search"
+    end
+  end
   get "/product/show/(:id)", to: "product#show", as: "product"
   resources :category, only: %i[index show]
   root to: "product#index"

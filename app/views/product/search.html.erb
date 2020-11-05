@@ -1,0 +1,14 @@
+<p class="mb-5">Found <%= pluralize(@products.count, 'Product') %> when searching
+  <% if params[:category].empty? && params[:keywords].empty? %>
+    <%= "All Products" %>
+  <% else %>
+    <% if !params[:keywords].empty? %> for <%= params[:keywords] %><% end %>
+    <% if !@category_search.empty? %> in <%= @category_search %><% end %>
+  <% end %>
+</p>
+
+<ul>
+  <% @products.each do |product| %>
+    <li><%= link_to product.name, product %></li>
+  <% end %>
+</ul>

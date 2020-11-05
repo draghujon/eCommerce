@@ -1,7 +1,9 @@
 class Product < ApplicationRecord
   belongs_to :category
+  paginates_per 25
 
-  #has_many :orders, through: :order_details
+  has_many :order_details
+  has_many :orders, through: :order_details
 
   validates :name, :quantity_per_unit, :unit_price, :unit_stock, presence: true
   validates :quantity_per_unit, :unit_stock, numericality: { only_integer: true }
