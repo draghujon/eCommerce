@@ -1,15 +1,1 @@
-<h1 class="title is-3"><%= @category.name %></h1>
-
-<h4 class="title is-6">Products with category '<%= @category.name %>'</h4>
-<table class="table is-4">
-  <thead>
-    <% @category.products.each do |product| %>
-    <tr>
-      <td><%= link_to product.name, product %></td>
-    </tr>
-
-    <% end %>
-  </thead>
-</table>
-
-<%= link_to 'Back', product_index_path %>
+<%= render partial: "category" %>
