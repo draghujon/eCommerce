@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'category/show'
   get 'product/index'
 
+  post 'product/add_to_cart/:id', to: 'product#add_to_cart', as: 'add_to_cart'
+  delete 'product/remove_from_cart/:id', to: 'product#remove_from_cart', as: 'remove_from_cart'
+
   resources :product, :category, only: %i[index] do
     collection do
       get "search"
