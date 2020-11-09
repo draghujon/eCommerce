@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+    get 'success', to: 'checkout#success', as: 'checkout_success'
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'category/index'
@@ -13,6 +19,7 @@ Rails.application.routes.draw do
       get "search"
     end
   end
+
   get "/product/show/(:id)", to: "product#show", as: "product"
   resources :category, only: %i[index show]
   root to: "product#index"
