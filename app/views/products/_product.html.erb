@@ -5,6 +5,10 @@
       <th>Product</th>
       <th><%= link_to 'Category', category_index_path %></th>
       <th>Price</th>
+      <th>Filter by
+        <%= link_to_unless_current("Recently Created", { action: "created_index" }) %>
+      </th>
+      <th><%= link_to_unless_current("Recently Updated", { action: "updated_index" }) %></th>
     </tr>
 
   </thead>
@@ -21,6 +25,7 @@
       <% end %>
     </details>
   <tbody>
+    <% %>
     <% @products.each.with_index do |product, i| %>
       <tr>
         <td><% if params[:page].nil? %><%= i + 1 %><% else %><%= params[:page].to_i * 25 - 24 + i %><% end %></td>
@@ -37,4 +42,6 @@
     <% end %>
   </tbody>
 </table>
-<%= paginate @products %>
+<% if current_page?(action: 'index', root: true) %>
+  <%= paginate @products %>
+<% end %>

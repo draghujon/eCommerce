@@ -9,19 +9,21 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   get 'category/index'
   get 'category/show'
-  get 'product/index'
+  get 'products/index'
 
-  post 'product/add_to_cart/:id', to: 'product#add_to_cart', as: 'add_to_cart'
-  delete 'product/remove_from_cart/:id', to: 'product#remove_from_cart', as: 'remove_from_cart'
+  post 'products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
+  delete 'products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'
 
-  resources :product, :category, only: %i[index] do
+  resources :products, :category, only: %i[index] do
     collection do
       get "search"
     end
   end
 
-  get "/product/show/(:id)", to: "product#show", as: "product"
+  get 'products/created_index'
+  get 'products/updated_index'
+  get "/products/show/(:id)", to: "products#show", as: "product"
   resources :category, only: %i[index show]
-  root to: "product#index"
+  root to: "products#index", as: "root"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

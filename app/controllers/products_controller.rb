@@ -1,9 +1,19 @@
-class ProductController < ApplicationController
+class ProductsController < ApplicationController
   before_action :initialize_session
   before_action :load_cart
 
   def index
-    @products = Product.order("name").page(params[:page]).all#Product.includes(:category).all
+    @products = Product.order("name").page(params[:page]).all
+    render 'index'
+  end
+
+  def created_index
+    @products = Product.where("created_at >= ?", Time.now)
+    render 'created_index'
+  end
+
+  def updated_index
+    @products = Product.where("updated_at > ?", Time.now - 1.week)
   end
 
   def show
