@@ -42,6 +42,8 @@
     <% end %>
   </tbody>
 </table>
-<% if current_page?(action: 'index', root: true) %>
+<% if current_page?(action: 'index') %>
+  <%= paginate @products %>
+<% elsif current_page?(root_path) %>
   <%= paginate @products %>
 <% end %>

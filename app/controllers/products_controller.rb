@@ -4,12 +4,10 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.order("name").page(params[:page]).all
-    render 'index'
   end
 
   def created_index
-    @products = Product.where("created_at >= ?", Time.now)
-    render 'created_index'
+    @products = Product.where("created_at < ?", 7.days.ago)
   end
 
   def updated_index
