@@ -5,7 +5,8 @@ ActiveAdmin.register Customer do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :address, :city, :postal_code, :country, :phone, :province, order_details_attributes: [:id, :product_id, :order_details_id, :product, :unit_price, :quantity, :discount, :_destroy]
+
+  permit_params :name, :address, :city, :postal_code, :country, :phone, :province, :image, order_details_attributes: [:id, :product_id, :order_details_id, :product, :unit_price, :quantity, :discount, :_destroy]
 
   index do
     selectable_column
@@ -35,7 +36,25 @@ ActiveAdmin.register Customer do
       row :orders do |order|
         order.orders.map { |o| o.order_details.order(:order_date)}.join(", ").html_safe
       end
+      row "Image" do |img|
+        image_tag img.image
+      end
     end
+  end
+
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+    f.inputs "Customer" do
+      f.input :name
+      f.input :address
+      f.input :city
+      f.input :province
+      f.input :postal_code
+      f.input :country
+      f.input :phone
+      f.input :image, as: :file, :hint => f.object.image.present? ? image_tag(f.object.image) : ""
+    end
+    f.actions
   end
   #
   # or

@@ -26,6 +26,8 @@ gem 'devise'
 gem 'kaminari'
 gem 'country_select', '~> 4.0'
 gem 'stripe'
+gem 'rubocop'
+gem 'rubocop-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -7,17 +7,15 @@ class CheckoutController < ApplicationController
       return
     end
 
-    @session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      line_items: [{
-        name: product.name,
-        amount: (product.unit_price * 100).to_i,
-        currency: 'cad',
-        quantity: 1
-      }],
-      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: checkout_cancel_url
-    )
+    @session = Stripe::Checkout::Session.create(payment_method_types: ["card"],
+                                                line_items:           [{
+                                                  name:     product.name,
+                                                  amount:   (product.unit_price * 100).to_i,
+                                                  currency: "cad",
+                                                  quantity: 1
+                                                }],
+                                                success_url:          checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}",
+                                                cancel_url:           checkout_cancel_url)
 
     respond_to do |format|
       format.js # render create.js.erb

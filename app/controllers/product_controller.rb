@@ -3,7 +3,7 @@ class ProductController < ApplicationController
   before_action :load_cart
 
   def index
-    @products = Product.order("name").page(params[:page]).all#Product.includes(:category).all
+    @products = Product.order("name").page(params[:page]).all # Product.includes(:category).all
   end
 
   def show
@@ -19,7 +19,7 @@ class ProductController < ApplicationController
     else
       @category_search = Category.where("id = ?", params[:category]).first.name
       @products = Product.where("name LIKE ?", wildcard_search)
-                   .where("category_id = ?", params[:category])
+                         .where("category_id = ?", params[:category])
     end
   end
 
