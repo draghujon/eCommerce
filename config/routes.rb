@@ -7,14 +7,14 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'category/index'
-  get 'category/show'
+  get 'categories/index'
+  get 'categories/show'
   get 'products/index'
 
   post 'products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
   delete 'products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'
 
-  resources :products, :category, only: %i[index] do
+  resources :products, :categories, only: %i[index] do
     collection do
       get "search"
     end
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'products/created_index'
   get 'products/updated_index'
   get "/products/show/(:id)", to: "products#show", as: "product"
-  resources :category, only: %i[index show]
+  resources :categories, only: %i[index show]
   root to: "products#index", as: "root"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
