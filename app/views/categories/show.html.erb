@@ -4,10 +4,9 @@
 <table class="table is-4">
   <thead>
     <% @category.products.each do |product| %>
-    <tr>
-      <td><%= link_to product.name, product %></td>
-    </tr>
-
+      <tr>
+        <td><%= link_to product.name, product %></td>
+      </tr>
     <% end %>
   </thead>
 </table>

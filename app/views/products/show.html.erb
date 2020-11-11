@@ -1,3 +1,4 @@
+
 <h2 class="title is-2">
   <% if @show_link %>
     <%= link_to @product.name, @product %>
@@ -24,6 +25,12 @@
           <td><%= @product.quantity_per_unit %></td>
           <td><%= @product.unit_price %></td>
           <td><%= @product.unit_stock %></td>
+          <td><%= button_to 'buy now', checkout_create_path, params: {id: @product.id}, remote: true %></td>
+          <% if @cart.include?(@product) %>
+            <td><%= button_to 'remove from cart', remove_from_cart_path(@product), method: :delete %></td>
+          <% else %>
+            <td><%= link_to 'add to cart', add_to_cart_path(@product.id), method: :post %></td>
+          <% end %>
       </tr>
   </tbody>
 </table>

@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   get 'categories/show'
   get 'products/index'
 
-  post 'products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
-  delete 'products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'
+  post '/products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
+  delete '/products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'
 
   resources :products, :categories, only: %i[index] do
     collection do
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   get 'products/created_index'
   get 'products/updated_index'
-  get "/products/show/(:id)", to: "products#show", as: "product"
+  get "products/show/(:id)", to: "products#show", as: "product"
   resources :categories, only: %i[index show]
   root to: "products#index", as: "root"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
