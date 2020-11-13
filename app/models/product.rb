@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   #scope :recents, lambda { where('created_at > ?', Time.now - 1.week)}
   #scope :updated, lambda { where('updated_at > ?', Time.now - 1.week)}
   accepts_nested_attributes_for :order_details, allow_destroy: true
+  accepts_nested_attributes_for :orders, allow_destroy: true
 
   validates :name, :quantity_per_unit, :unit_price, :unit_stock, presence: true
   validates :quantity_per_unit, :unit_stock, numericality: { only_integer: true }

@@ -1,5 +1,7 @@
 ActiveAdmin.register Order do
-
+  member_action :discount do
+    @discount = :discount
+  end
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -31,20 +33,26 @@ ActiveAdmin.register Order do
       row :ship_postal
       row :ship_country
       row :customer
-      row :order_details do |order_detail|
+      row "Item ordered" do |order_detail|
         order_detail.products.map { |o| o.name }.join(", ").html_safe
       end
-      row :products do |prod|
-        prod.orders.map {|pp| number_to_currency(pp.unit_price * 0.12 )}.join(", ").html_safe
-      end
-      row :products do |prod|
-        prod.products.map {|pp| number_to_currency(pp.unit_price)}.join(", ").html_safe
+      row "total before tax" do |order_detail|
+        order_detail.order_details.map { |o| number_to_currency(o.unit_price) }.join(", ").html_safe
       end
       row "taxes" do |order_detail|
-        order_detail.products.map { |o| number_to_currency(o.unit_price * 0.12) }.join(", ").html_safe
+        order_detail.order_details.map { |o| number_to_currency(o.unit_price * 0.12) }.join(", ").html_safe
+      end
+      row "Discount" do |order_detail|
+        order_detail.order_details.map { |o| number_to_currency(o.discount)}.join(", ").html_safe
       end
       row "Totals" do |order_detail|
-        order_detail.products.map { |o| number_to_currency(o.unit_price) }.join(", ").html_safe
+        #if order_detail.products.order(:discount).nil?
+        #if order_detail.discount.empty?
+        if @discount.nil?
+          order_detail.order_details.map { |o| number_to_currency((o.unit_price * 1.12) - o.discount) }.join(", ").html_safe
+        else
+          order_detail.order_details.map { |o| number_to_currency(o.unit_price * 1.12) }.join(", ").html_safe
+        end
       end
     end
   end
