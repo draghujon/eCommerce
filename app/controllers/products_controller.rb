@@ -7,11 +7,11 @@ class ProductsController < ApplicationController
   end
 
   def created_index
-    @products = Product.where("created_at < ?", 7.days.ago)
+    @products = Product.where("created_at >= ?", Time.now - 1.week)
   end
 
   def updated_index
-    @products = Product.where("updated_at > ?", Time.now - 1.week)
+    @products = Product.where("updated_at >= ?", Time.now - 1.week)
   end
 
   def show

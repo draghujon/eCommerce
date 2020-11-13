@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'categories/index'
   get 'categories/show'
   get 'products/index'
+  get 'orders/index', to: "orders#index", as: "orders"
 
   post '/products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
   delete '/products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'

@@ -5,7 +5,7 @@ ActiveAdmin.register Order do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :order_date, :ship_name, :ship_address, :ship_date, :ship_postal, :ship_country, :customer_id, order_details_attributes: [:id, :product_id, :order_details_id, :product, :unit_price, :quantity, :discount, :_destroy]
+  permit_params :order_date, :ship_name, :ship_address, :ship_date, :ship_postal, :ship_country, :customer_id, order_details_attributes: [:id, :product_id, :order_details_id, :product, :unit_price, :quantity, :discount, :_destroy], products_attributes: [:id, :name, :quantity_per_unit, :unit_price, :unit_stock, :category_id, :_destroy]
 
   index do
     selectable_column
@@ -34,8 +34,21 @@ ActiveAdmin.register Order do
       row :order_details do |order_detail|
         order_detail.products.map { |o| o.name }.join(", ").html_safe
       end
+      row :products do |prod|
+        prod.orders.map {|pp| number_to_currency(pp.unit_price * 0.12 )}.join(", ").html_safe
+      end
+      row :products do |prod|
+        prod.products.map {|pp| number_to_currency(pp.unit_price)}.join(", ").html_safe
+      end
+      row "taxes" do |order_detail|
+        order_detail.products.map { |o| number_to_currency(o.unit_price * 0.12) }.join(", ").html_safe
+      end
+      row "Totals" do |order_detail|
+        order_detail.products.map { |o| number_to_currency(o.unit_price) }.join(", ").html_safe
+      end
     end
   end
+
 
   form do |f|
     f.semantic_errors *f.object.errors.keys
@@ -46,6 +59,10 @@ ActiveAdmin.register Order do
       f.input :ship_date
       f.input :ship_postal
       f.input :ship_country
+      f.input :customer
+      # f.has_many :products, allow_destroy: true do |ff|
+      #   ff.input :unit_price
+      # end
       f.has_many :order_details, allow_destroy: true do |n_f|
         n_f.input :product
         n_f.input :unit_price
@@ -55,6 +72,7 @@ ActiveAdmin.register Order do
     end
     f.actions
   end
+
   #
   # or
   #

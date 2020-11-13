@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.delete_all
+OrderDetail.delete_all
+Order.delete_all
 Product.delete_all
 Category.delete_all
 
@@ -15,7 +17,8 @@ product_win10 = software.products.create(
   quantity_per_unit: 1,
   unit_price: 299.99,
   unit_stock: 10,
-  category_id: software.id
+  category_id: software.id,
+  created_at: "2020-10-01"
 )
 
 product_macOS = software.products.create(

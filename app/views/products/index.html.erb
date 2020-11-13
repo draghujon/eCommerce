@@ -1,5 +1,5 @@
 <details>
-    <summary>Shopping Cart</summary>
+    <summary>Shopping Cart<%= button_to 'buy cart items', checkout_create_path, params: {session_id: session.id}, remote: true %></summary>
     <% if @cart.empty? %>
       <p>No items in cart.</p>
     <% else %>
