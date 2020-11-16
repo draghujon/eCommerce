@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'customers/index'
+  get 'customers/show'
+  devise_for :users
+  get 'provinces/index'
+  get 'provinces/show'
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'
     get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
