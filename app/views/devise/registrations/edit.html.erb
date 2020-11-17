@@ -15,7 +15,8 @@
 
   <div class="field">
     <%= f.label :province %><br />
-
+    <%= f.collection_select(:id, Province.select(:id, :name), :id, :name) %>
+    <% @user.save %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
