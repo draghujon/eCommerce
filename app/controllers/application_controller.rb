@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   protected
     def configure_permitted_parameters
-      permit_attrs(%i[address province id])
+      permit_attrs(%i[address province_id])
     end
 
     def permit_attrs(attrs)

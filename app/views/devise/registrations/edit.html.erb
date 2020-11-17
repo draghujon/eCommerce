@@ -14,8 +14,9 @@
   </div>
 
   <div class="field">
-    <%= f.label :province %><br />
-    <%= f.collection_select(:id, Province.select(:id, :name), :id, :name) %>
+    <%= f.label :province_id %><br />
+    <%= f.collection_select(:province_id, Province.all, :id, :name) %>
+    <%# <%= f.collection_select(:province_id, Province.select(:id, :name), :province_id, :name) %>
     <% @user.save %>
   </div>
 
