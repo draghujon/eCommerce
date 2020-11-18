@@ -27,7 +27,7 @@ gem 'kaminari'
 gem 'country_select', '~> 4.0'
 gem 'stripe'
 gem 'discordrb'
-
+gem 'mailgun_rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
