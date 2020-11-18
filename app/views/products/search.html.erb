@@ -1,14 +1,23 @@
-<p class="mb-5">Found <%= pluralize(@products.count, 'Product') %> when searching
+<table class="mb-5">Found <%= pluralize(@products.count, 'Product') %> when searching
   <% if params[:category].empty? && params[:keywords].empty? %>
     <%= "All Products" %>
   <% else %>
     <% if !params[:keywords].empty? %> for <%= params[:keywords] %><% end %>
     <% if !@category_search.empty? %> in <%= @category_search %><% end %>
   <% end %>
-</p>
 
-<ul>
-  <% @products.each do |product| %>
-    <li><%= link_to product.name, product %></li>
-  <% end %>
-</ul>
+<tbody>
+  <tr>
+    <% @products.each do |product| %>
+      <td><%= link_to product.name, product %></td>
+      <td><%= button_to 'buy now', checkout_create_path, params: {id: product.id}, remote: true %></td>
+        <% if @cart.include?(@product) %>
+          <td><%= button_to 'remove from cart', remove_from_cart_path(product), method: :delete %></td>
+        <% else %>
+          <td><%= link_to 'add to cart', add_to_cart_path(product.id), method: :post %></td>
+        <% end %>
+  </tr>
+    <% end %>
+
+</tbody>
+</table>
