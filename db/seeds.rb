@@ -10,7 +10,21 @@ OrderDetail.delete_all
 Order.delete_all
 Product.delete_all
 Category.delete_all
+User.delete_all
 Province.delete_all
+Page.delete_all
+
+Page.create(
+  title: 'About CF Computing',
+  content: 'CF Computing has been in business since 2014 when I graduated from Network Admin/Computer Tech course at Patal Vocational College. Now we offer a store to buy various computer hardware and software and devices.',
+  permalink: 'about_us'
+)
+
+Page.create(
+  title: 'Contact CF Computing',
+  content: '123 My Street, Winnipeg, MB, R2W0G1',
+  permalink: 'contact_us'
+)
 
 software = Category.find_or_create_by(name: "Software", description: "Operating System Software")
 product_win10 = software.products.create(

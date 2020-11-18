@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :pages
+  get '/pages/:permalink' => "pages#permalink"
+
   get 'customers/index'
   get 'customers/show'
   devise_for :users
