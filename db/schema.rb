@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_172040) do
+ActiveRecord::Schema.define(version: 2020_11_19_161127) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -103,6 +103,14 @@ ActiveRecord::Schema.define(version: 2020_11_17_172040) do
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "permalink"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.integer "quantity_per_unit"
@@ -116,9 +124,10 @@ ActiveRecord::Schema.define(version: 2020_11_17_172040) do
 
   create_table "provinces", force: :cascade do |t|
     t.string "name"
-    t.decimal "taxes"
+    t.decimal "tax_1"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "tax_2"
   end
 
   create_table "users", force: :cascade do |t|

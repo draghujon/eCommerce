@@ -1035,74 +1035,87 @@ msi_system_5 = computer_systems.products.create(
 
 alberta = Province.create(
   name: "Alberta",
-  taxes: 0.05
+  tax_1: 0.05,
+  tax_2: 0.00
 )
 
 bc = Province.create(
   name: "British Columbia",
-  taxes: 0.12
+  tax_1: 0.05,
+  tax_2: 0.07
 )
 
 manitoba = Province.create(
   name: "Manitoba",
-  taxes: 0.12
+  tax_1: 0.05,
+  tax_2: 0.07
 )
 
 newbrunswick = Province.create(
   name: "New Brunswick",
-  taxes: 0.15
+  tax_1: 0.15,
+  tax_2: 0.00
 )
 
 newfoundland = Province.create(
   name: "New Found Land and Labrador",
-  taxes: 0.15
+  tax_1: 0.15,
+  tax_2: 0.00
 )
 
 northwestterritories = Province.create(
   name: "Northwest Territories",
-  taxes: 0.05
+  tax_1: 0.05,
+  tax_2: 0.00
 )
 
 novascotia = Province.create(
   name: "Nova Scotia",
-  taxes: 0.15
+  tax_1: 0.15,
+  tax_2: 0.00
 )
 
 nunavut = Province.create(
   name: "Nunavut",
-  taxes: 0.05
+  tax_1: 0.05,
+  tax_2: 0.00
 )
 
 ontario = Province.create(
   name: "Ontario",
-  taxes: 0.13
+  tax_1: 0.13,
+  tax_2: 0.00
 )
 
 pei = Province.create(
   name: "Prince Edward Island",
-  taxes: 0.15
+  tax_1: 0.15,
+  tax_2: 0.00
 )
 
 quebec = Province.create(
   name: "Quebec",
-  taxes: 0.14975
+  tax_1: 0.05,
+  tax_2: 0.9975
 )
 
 saskatchewan = Province.create(
   name: "Saskatchewan",
-  taxes: 0.11
+  tax_1: 0.05,
+  tax_2: 0.06
 )
 
-# chris = User.create(
-#   email: 'cfeasby204@gmail.com',
-#   address: '25 Lansdowne Ave',
-#   province: 'Manitoba',
-#   password: 'feasby'
-# )
+ chris = User.create(
+   email: 'cfeasby204@gmail.com',
+   address: '25 Lansdowne Ave',
+   province: manitoba,
+   password: 'feasby'
+ )
 
 yukon = Province.create(
   name: "Yukon",
-  taxes: 0.05
+  tax_1: 0.05,
+  tax_2: 0.00
 )
 
 # Provinces.all.each do |province|

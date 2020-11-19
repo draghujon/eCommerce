@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.order("name").page(params[:page]).all
+    @user_id = current_user.id
   end
 
   def created_index
