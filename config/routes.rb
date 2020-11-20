@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   resources :pages
   get '/pages/:permalink' => "pages#permalink"
 
-  get 'customers/index'
-  get 'customers/show'
+  get '/customers/index', to: "customers#index", as: "customers"
+  get '/customers/show/(:id)', to: "customers#show", as: "customer"
+
   devise_for :users
   get 'provinces/index'
   get 'provinces/show'
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   get 'categories/show'
   get 'products/index'
   get 'orders/index', to: "orders#index", as: "orders"
+  get 'orders/show/(:id)', to: "orders#show", as: "order"
 
   post '/products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
   delete '/products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'
@@ -32,7 +34,7 @@ Rails.application.routes.draw do
   get 'products/created_index'
   get 'products/updated_index'
   get "products/show/(:id)", to: "products#show", as: "product"
-  resources :categories, only: %i[index show]
+  resources :categories, :customers, only: %i[index show]
   root to: "products#index", as: "root"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

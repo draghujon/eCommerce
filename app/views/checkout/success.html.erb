@@ -3,4 +3,34 @@
 <p>The status of your payment is <%= @payment_intent.status %>.</p>
 <%= debug @session %>
 <%= debug @payment_intent%>
+<% @customer_id = Stripe::Customer.retrieve(@payment_intent.customer)%>
+<%= @payment_intent.charges.data[0]['billing_details']['address'] %>
+<%= @payment_intent.charges.data[0].billing_details.address %>
+<%= debug @user %>
 
+
+<% @new_customer = Customer.find_or_create_by(
+    id: @user.id
+) %>
+<% @new_customer.update(
+    name:  @payment_intent.charges.data[0].billing_details.name,
+    address: @payment_intent.charges.data[0].billing_details.address.line1,
+    city: @payment_intent.charges.data[0].billing_details.address.city,
+    postal_code: @payment_intent.charges.data[0].billing_details.address.postal_code,
+    province: @payment_intent.charges.data[0].billing_details.address.state,
+    country: @payment_intent.charges.data[0].billing_details.address.country,
+    phone: @payment_intent.charges.data[0].billing_details.phone
+    )
+%>
+
+
+<% Order.find_or_create_by(
+    order_date: Time.at(@payment_intent.charges.data[0].created),
+    ship_name: @payment_intent.charges.data[0].billing_details.name,
+    ship_address: @payment_intent.charges.data[0].billing_details.address.line1,
+    ship_date: Time.now + 3.days,
+    ship_postal: @payment_intent.charges.data[0].billing_details.address.postal_code,
+    ship_country: @payment_intent.charges.data[0].billing_details.address.country,
+    customer_id: @new_customer.id
+    )
+%>

@@ -1,2 +1,14 @@
-<h1>Customers#index</h1>
-<p>Find me in app/views/customers/index.html.erb</p>
+<table class="table is-4">
+  <thead>
+    <th>Name</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>Postal Code</th>
+    <th>Country</th>
+    <th>Province</th>
+    <th>Phone</th>
+  </thead>
+  <tbody>
+    <%= render partial: 'customer', collection: @customers %>
+  </tbody>
+</table>

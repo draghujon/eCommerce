@@ -49,7 +49,20 @@
       </div>
     </section>
     <footer class="footer is-4">
-      <%= link_to 'Pages', pages_path %>
+      <%= link_to 'Pages', pages_path %><br />
+    <% if !current_user.nil? %>
+      <% if current_user.admin_user > 0 %>
+        <%= link_to 'Customers', customers_path%><br />
+      <% else %>
+        <%= link_to 'Customer', customer_path(current_user.id) %><br />
+      <% end %>
+
+      <% if current_user.admin_user > 0 %>
+        <%= link_to 'Orders', orders_path %><br />
+      <% else %>
+        <%= link_to 'Orders', order_path(current_user.id) %><br />
+      <% end %>
+    <% end %>
     </footer>
   </body>
 </html>

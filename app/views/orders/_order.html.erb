@@ -1,1 +1,9 @@
-<% @orders %>
+<tr>
+  <td><%= order.order_date %></td>
+  <td><%= order.ship_name %></td>
+  <td><%= order.ship_address %></td>
+  <td><%= order.ship_date %></td>
+  <td><%= order.ship_postal %></td>
+  <td><%= order.ship_country %></td>
+  <td><%= link_to order.customer.id, customer_path(order.customer.id)  %></td>
+</tr>

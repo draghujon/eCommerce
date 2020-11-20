@@ -5,5 +5,5 @@ class Customer < ApplicationRecord
 
   accepts_nested_attributes_for :orders, allow_destroy: true
 
-  validates :name, :address, :city, :province, :postal_code, :country, :phone, :image, presence: true
+  validates :name, :address, :city, :province, :postal_code, :country, presence: true
 end

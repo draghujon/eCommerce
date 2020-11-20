@@ -1,1 +1,14 @@
-<%= render :partial => 'order' %>
+<table class="table is-4">
+  <thead>
+    <th>Order Date</th>
+    <th>Ship Name</th>
+    <th>Ship Address</th>
+    <th>Ship Date</th>
+    <th>Postal Code</th>
+    <th>Ship Country</th>
+    <th>Customer ID</th>
+  </thead>
+  <tbody>
+    <%= render partial: 'order', collection: @orders %>
+  </tbody>
+</table>
