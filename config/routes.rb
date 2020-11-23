@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  resources :pages
-  get '/pages/:permalink' => "pages#permalink"
+  resources :pages, except: [:show]
+  get '/pages/:permalink' => "pages#permalink", as: :permalink
 
   get '/customers/index', to: "customers#index", as: "customers"
   get '/customers/show/(:id)', to: "customers#show", as: "customer"
 
   devise_for :users
   get 'provinces/index'
-  get 'provinces/show'
+  get 'provinces/show/(:id)', to: "provinces#show", as: "province"
+  put 'provinces/show/(:id)', to: "provinces#update", as: "update"
+
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'
     get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'

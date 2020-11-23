@@ -1,0 +1,13 @@
+<tr>
+  <td><%= link_to province.name, province_path(province.id) %></td>
+  <td><%= (province.tax_1 * 100) %>%</td>
+  <% if !province.tax_2.zero? %>
+    <% if province.name == 'Quebec' %>
+      <td><%= (province.tax_2 * 10) %>%</td>
+    <% else %>
+      <td><%= (province.tax_2 * 100) %>%</td>
+    <% end %>
+  <% else %>
+    <td>N/A</td>
+  <% end %>
+</tr>

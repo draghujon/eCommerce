@@ -32,10 +32,38 @@ class ProductsController < ApplicationController
     end
   end
 
+  # def add_to_cart
+  #   id = params[:id].to_i
+
+  #   session[:cart] << id unless session[:cart].include?(id)
+  #   redirect_to request.referrer
+  # end
+
+
   def add_to_cart
     id = params[:id].to_i
 
-    session[:cart] << id unless session[:cart].include?(id)
+    is_in_cart = false
+
+    session[:cart].delete(1)
+    session[:cart].each do |ct|
+      if defined?(ct['id'])
+        Product.find(ct['id'].to_i)
+        if ct['id'].to_i == id
+
+          is_in_cart = true
+          ct['quantity'] = ct['quantity'].to_i + 1
+        end
+      end
+    end
+
+    if !is_in_cart
+      cart_item = {
+        id: id,
+        quantity: 1
+      }
+      session[:cart] << cart_item
+    end
     redirect_to request.referrer
   end
 
@@ -53,6 +81,16 @@ class ProductsController < ApplicationController
   end
 
   def load_cart
-    @cart = Product.find(session[:cart])
+    @cart = []
+    session[:cart].delete(1)
+    session[:cart].each do |ct|
+        #@cart.push(ct)
+        @cart.push({
+          product: Product.find(ct['id']),
+          quantity: ct['quantity']
+        })
+    end
+    #@cart = session[:cart]
+    #@cart = Product.find(session[:cart])
   end
 end

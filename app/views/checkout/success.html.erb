@@ -6,7 +6,6 @@
 <% @customer_id = Stripe::Customer.retrieve(@payment_intent.customer)%>
 <%= @payment_intent.charges.data[0]['billing_details']['address'] %>
 <%= @payment_intent.charges.data[0].billing_details.address %>
-<%= debug @user %>
 
 
 <% @new_customer = Customer.find_or_create_by(
@@ -22,7 +21,6 @@
     phone: @payment_intent.charges.data[0].billing_details.phone
     )
 %>
-
 
 <% Order.find_or_create_by(
     order_date: Time.at(@payment_intent.charges.data[0].created),

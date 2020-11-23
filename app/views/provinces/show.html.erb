@@ -1,2 +1,27 @@
-<h1>Provinces#show</h1>
-<p>Find me in app/views/provinces/show.html.erb</p>
+<table class="title is-4">
+  <thead>
+    <th>Name</th>
+    <th>Tax 1</th>
+    <th>Tax 2</th>
+  </thead>
+  <tbody>
+    <%= render partial: 'province', object: @province %>
+  </tbody>
+</table>
+
+<%= form_for(@province, as: @update, url: update_path(@province.id), html: { method: :put }) do |f| %>
+
+  <div class="field">
+    <%= f.label :tax_1 %><br />
+    <%= f.number_field :tax_1, autofocus: true, autocomplete: "Tax 1", step: 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tax_2 %><br />
+    <%= f.number_field :tax_2, autofocus: true, autocomplete: "Tax 2", step: 0.01 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

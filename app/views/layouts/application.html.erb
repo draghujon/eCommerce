@@ -49,19 +49,23 @@
       </div>
     </section>
     <footer class="footer is-4">
-      <%= link_to 'Pages', pages_path %><br />
+
+      <% pages.each do |page| %>
+        <%= link_to page.title, permalink_path(page.permalink) %><br />
+      <% end%>
+      <%= link_to 'About Us', permalink_path("about_us") %><br />
+      <%= link_to 'Contact Us', permalink_path("contact_us") %><br />
     <% if !current_user.nil? %>
       <% if current_user.admin_user > 0 %>
         <%= link_to 'Customers', customers_path%><br />
+        <%= link_to 'Orders', orders_path %><br />
+        <%= link_to 'Pages', pages_path %><br />
       <% else %>
         <%= link_to 'Customer', customer_path(current_user.id) %><br />
-      <% end %>
-
-      <% if current_user.admin_user > 0 %>
-        <%= link_to 'Orders', orders_path %><br />
-      <% else %>
         <%= link_to 'Orders', order_path(current_user.id) %><br />
       <% end %>
+
+
     <% end %>
     </footer>
   </body>

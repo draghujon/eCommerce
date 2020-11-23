@@ -1,1 +1,11 @@
-<%= render :partial => 'category' %>
+<h4 class="subtitle is-4">Category</h4>
+<table class="table is-1">
+<thead>
+  <th>Category</th>
+  <th>Description</th>
+</thead>
+  <tbody>
+    <%= render :partial => 'category', collection: @categories %>
+  </tbody>
+</table>
+<%= link_to 'Back', :back %>

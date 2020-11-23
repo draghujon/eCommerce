@@ -10,9 +10,8 @@
     <th>Customer ID</th>
   </thead>
   <tbody>
-  <% @orders.each do |o| %>
-    <%= render partial: 'order', object: o %>
-  <% end %>
-
+    <% @orders.each do |o| %>
+      <%= render partial: 'order', object: o %>
+    <% end %>
   </tbody>
 </table>

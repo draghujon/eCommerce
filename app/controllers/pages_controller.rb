@@ -1,4 +1,5 @@
 class PagesController < InheritedResources::Base
+  http_basic_authenticate_with name: "admin", password: "secret", except: [:show]
   before_action :set_page, only: %i[show edit update destroy]
 
   # GET /pages
@@ -10,10 +11,6 @@ class PagesController < InheritedResources::Base
   def permalink
     @page = Page.find_by(permalink: params[:permalink])
   end
-
-  # GET /pages/1
-  # GET /pages/1.json
-  def show; end
 
   # GET /pages/new
   def new
@@ -30,7 +27,7 @@ class PagesController < InheritedResources::Base
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: "Page was successfully created." }
+        format.html { redirect_to pages_path, notice: "Page was successfully created." }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }
@@ -44,7 +41,7 @@ class PagesController < InheritedResources::Base
   def update
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to @page, notice: "Page was successfully updated." }
+        format.html { redirect_to pages_path, notice: "Page was successfully updated." }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit }
