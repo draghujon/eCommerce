@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
       return
     end
     @customer = Customer.find(params[:id])
-    #current_user.admin_user = 1
-    #current_user.save
+    current_user.admin_user = 1
+    current_user.save
   end
 end
