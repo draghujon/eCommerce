@@ -1107,7 +1107,7 @@ saskatchewan = Province.create(
 
  chris = User.create(
    email: 'cfeasby204@gmail.com',
-   address: '25 Lansdowne Ave',
+   address: '123 My Stret',
    province: manitoba,
    password: 'feasby',
    admin_user: 1
