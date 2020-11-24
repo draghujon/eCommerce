@@ -184,6 +184,7 @@ GEM
     opus-ruby (1.0.1)
       ffi
     orm_adapter (0.5.0)
+    pg (1.2.3)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
     public_suffix (4.0.6)
@@ -324,6 +325,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.2)
   mailgun_rails
+  pg
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.3)
   sass-rails (>= 6)
