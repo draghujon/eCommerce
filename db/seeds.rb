@@ -1109,7 +1109,8 @@ saskatchewan = Province.create(
    email: 'cfeasby204@gmail.com',
    address: '25 Lansdowne Ave',
    province: manitoba,
-   password: 'feasby'
+   password: 'feasby',
+   admin_user: 1
  )
 
 yukon = Province.create(
@@ -1129,3 +1130,4 @@ yukon = Province.create(
 puts "Created #{Product.count} products"
 puts "Created #{Province.count} provinces"
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'admin@cf.com', password: 'Password123', password_confirmation: 'Password123') if Rails.env.production?
